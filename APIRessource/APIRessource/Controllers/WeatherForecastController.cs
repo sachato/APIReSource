@@ -1,3 +1,4 @@
+using APIRessource.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIRessource.Controllers
