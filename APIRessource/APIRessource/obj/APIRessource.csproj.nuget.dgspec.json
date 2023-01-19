@@ -1,36 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj": {}
+    "C:\\Users\\sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj": {
+    "C:\\Users\\sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj",
+        "projectUniqueName": "C:\\Users\\sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj",
         "projectName": "APIRessource",
-        "projectPath": "C:\\Users\\Sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj",
-        "packagesPath": "C:\\Users\\Sacha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\obj\\",
+        "projectPath": "C:\\Users\\sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\APIRessource.csproj",
+        "packagesPath": "C:\\Users\\sacha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sacha\\OneDrive - Association Cesi Viacesi mail\\Cesi\\2 - CDA\\Projet\\CUBE2\\02 - Code\\API\\APIRessource\\APIRessource\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sacha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\sacha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -48,6 +40,36 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -59,7 +81,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -71,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.308\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

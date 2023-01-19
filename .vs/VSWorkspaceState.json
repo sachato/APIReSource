@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\APIRessource",
+    "\\APIRessource\\APIRessource",
+    "\\APIRessource\\APIRessource\\Models"
   ],
+  "SelectedNode": "\\APIRessource\\APIRessource\\Models\\WeatherForecast.cs",
   "PreviewInSolutionExplorer": false
 }
