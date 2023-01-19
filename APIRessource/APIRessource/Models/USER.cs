@@ -15,5 +15,6 @@
         public int idZoneGeo { get; set; }
         public int idRole { get; set; }
 
+
     }
 }
