@@ -17,6 +17,7 @@ namespace APIRessource.Models
         
         public virtual DbSet<USER> USER { get; set; }
         public virtual DbSet<RESSOURCE> RESSOURCE { get; set; }
+        public virtual DbSet<Commentaire> Commentaire { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
