@@ -17,6 +17,8 @@ namespace APIRessource.Models
         
         public virtual DbSet<USER> USER { get; set; }
         public virtual DbSet<RESSOURCE> RESSOURCE { get; set; }
+        public virtual DbSet<ZONE_GEO> ZONE_GEO { get; set; }
+        public virtual DbSet<ROLE> ROLE { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -25,6 +27,22 @@ namespace APIRessource.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<USER>(entity =>
+            {
+                entity.HasKey("id");
+
+                entity.HasOne(d => d.ZONE_GEO)
+                    .WithMany(p => p.USER)
+                    .HasForeignKey(d => d.id)
+                    .HasConstraintName("FK_USER_ZONE_GEO");
+
+                entity.HasOne(d => d.ROLE)
+                .WithOne(p => p.USER)
+                .HasForeignKey<ROLE>(d => d.id)
+                .HasConstraintName("FK_USER_ROLE");
+            });
+
         }
 
     }

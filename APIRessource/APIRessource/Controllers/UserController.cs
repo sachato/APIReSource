@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Text.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +12,8 @@ namespace APIRessource.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly RessourceContext cnx; 
+        private readonly RessourceContext cnx;
+        private JsonSerializerOptions jsonserializeroptions = new System.Text.Json.JsonSerializerOptions();
 
         public UserController(RessourceContext context)
         {
@@ -21,22 +23,33 @@ namespace APIRessource.Controllers
         [HttpGet]
         public IEnumerable<USER> Get()
         {
-            return cnx.USER.AsQueryable().ToList();
+            var test = new List<USER>();
+            try
+            {
+                test = cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).AsQueryable().ToList();
+            }
+            catch(Exception ex)
+            {
+                var stop = "hgflk";
+            }
+            return test;
+
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public USER Get(int id)
         {
-            return cnx.USER.Where(u => u.id == id).First();
+            return cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).Where(u => u.id == id).FirstOrDefault();//Include(u => u.ZONE_GEO).Where(u => u.id == id).First();
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-            USER user = new USER();
-            user.nom = "moreau";
+        public void Post([FromBody] USER user)
+{
+            //USER user = JsonSerializer.Deserialize<USER>(value);
+            //USER user = new USER();
+            /*user.nom = "moreau";
             user.prenom = "kevin";
             user.email = "kevin2@viacesi.fr";
             user.password = "fezf";
@@ -44,22 +57,26 @@ namespace APIRessource.Controllers
             user.telephone = "0638568545";
             user.isDeleted = false;
             user.isConfirm = false;
-            user.idZoneGeo = 1;
-            user.idRole = 1;
-
+            user.zone_geo = new ZONE_GEO();
+            user.role = new ROLE();*/
+            user.dateCreation = DateTime.Now;
+            user.isConfirm = false;
+            user.isDeleted = false;
+            user.ZONE_GEO = cnx.ZONE_GEO.Where(zg => zg.id == user.idZoneGeo).FirstOrDefault();
+            user.ROLE = cnx.ROLE.Where(r => r.id == 1).FirstOrDefault();
             cnx.Add(user);
             cnx.SaveChanges();
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] USER user)
         {
-            USER user = cnx.USER.Where(u => u.id == id).First();
-            user.isConfirm = true;
+/*            USER user = cnx.USER.Where(u => u.id == id).First();
+            user.isDeleted = false;*/
 
             cnx.Update(user);
-            cnx.SaveChanges(true);
+            cnx.SaveChanges();
         }
 
         // DELETE api/<UserController>/5

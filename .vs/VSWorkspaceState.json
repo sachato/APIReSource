@@ -3,8 +3,9 @@
     "",
     "\\APIRessource",
     "\\APIRessource\\APIRessource",
+    "\\APIRessource\\APIRessource\\Controllers",
     "\\APIRessource\\APIRessource\\Models"
   ],
-  "SelectedNode": "\\APIRessource\\APIRessource\\Models\\WeatherForecast.cs",
+  "SelectedNode": "\\APIRessource\\APIRessource\\Models\\RessourceContext.cs",
   "PreviewInSolutionExplorer": false
 }

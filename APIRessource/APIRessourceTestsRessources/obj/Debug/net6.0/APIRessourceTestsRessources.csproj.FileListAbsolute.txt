@@ -1,0 +1,5 @@
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessourceTestsRessources\obj\Debug\net6.0\APIRessourceTestsRessources.csproj.AssemblyReference.cache
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessourceTestsRessources\obj\Debug\net6.0\APIRessourceTestsRessources.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessourceTestsRessources\obj\Debug\net6.0\APIRessourceTestsRessources.AssemblyInfoInputs.cache
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessourceTestsRessources\obj\Debug\net6.0\APIRessourceTestsRessources.AssemblyInfo.cs
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessourceTestsRessources\obj\Debug\net6.0\APIRessourceTestsRessources.csproj.CoreCompileInputs.cache

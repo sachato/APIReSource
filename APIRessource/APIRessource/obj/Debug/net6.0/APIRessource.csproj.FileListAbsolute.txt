@@ -90,3 +90,8 @@ C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\obj\Debug\net6.0\staticwebassets\msbuild.APIRessource.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\obj\Debug\net6.0\staticwebassets\msbuild.build.APIRessource.props
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.APIRessource.props
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.APIRessource.props
+C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\obj\Debug\net6.0\staticwebassets.pack.json
