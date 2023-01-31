@@ -90,3 +90,13 @@ C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\sacha\OneDrive - Association Cesi Viacesi mail\Cesi\2 - CDA\Projet\CUBE2\02 - Code\API\APIRessource\APIRessource\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.csproj.AssemblyReference.cache
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.AssemblyInfoInputs.cache
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.AssemblyInfo.cs
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.csproj.CoreCompileInputs.cache
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.dll
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\refint\APIRessource.dll
+C:\Users\benja\Source\Repos\sachato\APIReSource\APIRessource\APIRessource\obj\Debug\net6.0\APIRessource.pdb
