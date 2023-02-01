@@ -26,7 +26,7 @@ namespace APIRessource.Controllers
             var test = new List<USER>();
             try
             {
-                test = cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).AsQueryable().ToList();
+                test = cnx.USER.ToList();
             }
             catch(Exception ex)
             {
@@ -40,7 +40,7 @@ namespace APIRessource.Controllers
         [HttpGet("{id}")]
         public USER Get(int id)
         {
-            return cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).Where(u => u.id == id).FirstOrDefault();//Include(u => u.ZONE_GEO).Where(u => u.id == id).First();
+            return cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).Where(u => u.idUser == id).FirstOrDefault();
         }
 
         // POST api/<UserController>
@@ -62,18 +62,18 @@ namespace APIRessource.Controllers
             user.dateCreation = DateTime.Now;
             user.isConfirm = false;
             user.isDeleted = false;
-            user.ZONE_GEO = cnx.ZONE_GEO.Where(zg => zg.id == user.idZoneGeo).FirstOrDefault();
-            user.ROLE = cnx.ROLE.Where(r => r.id == 1).FirstOrDefault();
+            user.ZONE_GEO = cnx.ZONE_GEO.Where(zg => zg.idZoneGeo == user.idZoneGeo).FirstOrDefault();
+            user.ROLE = cnx.ROLE.Where(r => r.idRole == 1).FirstOrDefault();
             cnx.Add(user);
             cnx.SaveChanges();
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] USER user)
+        public void Put(int id, [FromBody]bool confirmation)
         {
-/*            USER user = cnx.USER.Where(u => u.id == id).First();
-            user.isDeleted = false;*/
+            USER user = cnx.USER.Where(u => u.idUser == id).First();
+            user.isConfirm = confirmation;
 
             cnx.Update(user);
             cnx.SaveChanges();
@@ -83,7 +83,7 @@ namespace APIRessource.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            USER user = cnx.USER.Where(u => u.id == id).First();
+            USER user = cnx.USER.Where(u => u.idUser == id).First();
             user.isDeleted = true;
             cnx.Update(user);
             cnx.SaveChanges();

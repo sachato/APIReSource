@@ -1,14 +1,17 @@
-﻿namespace APIRessource.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace APIRessource.Models
 {
     public class USER
     {
 
-        public USER()
+        /*public USER()
         {
             //ZONE_GEO = new ZONE_GEO();
             //ROLE = new ROLE();
-        }
-        public int id { get; set; }
+        }*/
+        [Key]
+        public int idUser { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
         public string email { get; set; }
@@ -19,8 +22,9 @@
         public bool? isDeleted { get; set; }
         public bool? isConfirm { get; set; }
         public int idZoneGeo { get; set; }
-        public ZONE_GEO? ZONE_GEO { get; set; }
-        public ROLE? ROLE { get; set; }
+        public int idRole { get; set; }
+        public  ZONE_GEO? ZONE_GEO { get; set; }
+        public  ROLE? ROLE { get; set; }
 
     }
 }

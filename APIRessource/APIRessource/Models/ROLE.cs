@@ -1,14 +1,18 @@
-﻿namespace APIRessource.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace APIRessource.Models
 {
     public class ROLE
     {
 
-        public ROLE() 
+        /*public ROLE() 
         {
             //USER = new USER();
-        }
-        public int id { get; set; }
+        }*/
+        [Key]
+        public int idRole { get; set; }
         public string nomRole { get; set; }
-        public USER USER { get; set; }
+        public  List<USER> USER { get; set; }
     }
 }

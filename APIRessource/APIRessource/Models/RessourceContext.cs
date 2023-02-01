@@ -12,13 +12,10 @@ namespace APIRessource.Models
     {
         public RessourceContext() : base()
         {
-            this.ChangeTracker.LazyLoadingEnabled = false;
+            //this.ChangeTracker.LazyLoadingEnabled = false;
         }
         
-        public virtual DbSet<USER> USER { get; set; }
-        public virtual DbSet<RESSOURCE> RESSOURCE { get; set; }
-        public virtual DbSet<ZONE_GEO> ZONE_GEO { get; set; }
-        public virtual DbSet<ROLE> ROLE { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
@@ -30,20 +27,88 @@ namespace APIRessource.Models
 
             modelBuilder.Entity<USER>(entity =>
             {
-                entity.HasKey("id");
+                entity.HasKey(e => e.idUser);
 
-                entity.HasOne(d => d.ZONE_GEO)
+                entity.Property(e => e.dateCreation)
+                .HasColumnType("datetime");
+                //.HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.email)
+                    .IsRequired()
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.prenom)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.nom)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.pseudo)
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.password)
+                    .HasMaxLength(512)
+                    .IsUnicode(false);
+
+                entity.HasOne<ROLE>(d => d.ROLE)
+                .WithMany(u => u.USER)
+                .HasForeignKey(d => d.idRole)
+                .HasConstraintName("FK_USER_ROLE");
+
+                entity.HasOne<ZONE_GEO>(d => d.ZONE_GEO)
                     .WithMany(p => p.USER)
-                    .HasForeignKey(d => d.id)
+                    .HasForeignKey(d => d.idZoneGeo)
                     .HasConstraintName("FK_USER_ZONE_GEO");
 
-                entity.HasOne(d => d.ROLE)
-                .WithOne(p => p.USER)
-                .HasForeignKey<ROLE>(d => d.id)
-                .HasConstraintName("FK_USER_ROLE");
             });
 
+            /*modelBuilder.Entity<ROLE>(entity =>
+            {
+                entity.HasKey(e => e.idRole);
+
+                entity.Property(e => e.nomRole)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                
+            });
+
+            modelBuilder.Entity<ZONE_GEO>(entity =>
+            {
+                entity.HasKey(e => e.idZoneGeo);
+
+                entity.Property(e => e.code)
+                    .IsRequired();
+
+                entity.Property(e => e.nom_fr_fr)
+                .HasMaxLength(45)
+                .IsUnicode(false);
+
+                
+            });*/
+
+
+            /*modelBuilder.Entity<ROLE>()
+                .HasMany<USER>(r => r.USER)
+                .WithOne(u => u.ROLE)
+                .HasForeignKey(u => u.idRole);
+
+            modelBuilder.Entity<ZONE_GEO>()
+                .HasMany<USER>(r => r.USER)
+                .WithOne(u => u.ZONE_GEO)
+                .HasForeignKey(u => u.idZoneGeo);*/
+
+
         }
+
+        public DbSet<USER> USER { get; set; }
+        public DbSet<RESSOURCE> RESSOURCE { get; set; }
+        public DbSet<ZONE_GEO> ZONE_GEO { get; set; }
+        public DbSet<ROLE> ROLE { get; set; }
 
     }
 }
