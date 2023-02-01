@@ -1,8 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using APIRessource.Models;
 using APIRessource.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,104 +7,56 @@ namespace APIRessource.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentairesController : ControllerBase
+    public class CommentaireController : ControllerBase
     {
-        private readonly RessourceContext _context;
+        private readonly RessourceContext cnx;
 
-        public CommentairesController(RessourceContext context)
+        public CommentaireController(RessourceContext context)
         {
-            _context = context;
+            cnx = context;
         }
 
+        // POST api/<CommentaireController>
         [HttpPost]
-        public async Task<ActionResult<Commentaire>> AjouterCommentaire(int idRessource, string commentaire)
+        public void Post([FromBody] string commentaire, int idUser)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            Commentaire c = new Commentaire();
+            c.datePoste = DateTime.Now;
+            c.commentaire = commentaire;
+            c.idDeleted = false;
+            c.idRessource = 1;
+            c.idUser = idUser;
 
-            var nouveauCommentaire = new Commentaire
-            {
-                idRessource = idRessource,
-                commentaire = commentaire,
-                datePoste = DateTime.Now
-            };
-
-            try
-            {
-                _context.Commentaires.Add(nouveauCommentaire);
-
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                return BadRequest("Impossible d'ajouter le commentaire");
-            }
-
-            return CreatedAtAction(nameof(GetCommentaire), new { id = nouveauCommentaire.id }, nouveauCommentaire);
+            cnx.Add(c);
+            cnx.SaveChanges();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> ModifierCommentaire(int id, string commentaire)
+        // GET api/<CommentaireController>/5
+        [HttpGet("{id}")]
+        public Commentaire Get(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var commentaireAModifier = await _context.Commentaires.FindAsync(id);
-
-            if (commentaireAModifier == null)
-            {
-                return NotFound();
-            }
-
-            commentaireAModifier.commentaire = commentaire;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                return BadRequest("Impossible de mettre à jour le commentaire");
-            }
-
-
-            return NoContent();
+            return cnx.Commentaire.Where(c => c.id == id).First();
         }
 
+        // DELETE api/<CommentaireController>/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Commentaire>> SupprimerCommentaire(int id)
+        public void Delete(int id, int idUser)
         {
-            var commentaireASupprimer = await _context.Commentaires.FindAsync(id);
-            if (commentaireASupprimer == null)
-            {
-                return NotFound();
-            }
-
-            _context.Commentaires.Remove(commentaireASupprimer);
-            await _context.SaveChangesAsync();
-
-            return commentaireASupprimer;
+            Commentaire c = cnx.Commentaire.Where(c => c.id == id).First();
+            c.idDeleted = true;
+            c.idUser = idUser;
+            cnx.Update(c);
+            cnx.SaveChanges();
         }
 
-        private bool CommentaireExiste(long id)
+        // PUT api/<CommentaireController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, int idUser)
         {
-            return _context.Commentaires.Any(e => e.id == id);
-        }
-
-        private async Task<ActionResult<Commentaire>> GetCommentaire(long id)
-        {
-            var commentaire = await _context.Commentaires.FindAsync(id);
-
-            if (commentaire == null)
-            {
-                return NotFound();
-            }
-
-            return commentaire;
+            Commentaire c = cnx.Commentaire.Where(c => c.id == id).First();
+            c.idUser = idUser;
+            cnx.Update(c);
+            cnx.SaveChanges(true);
         }
     }
 }

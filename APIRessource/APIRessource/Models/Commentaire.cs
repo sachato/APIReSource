@@ -5,7 +5,7 @@ namespace APIRessource.Models
 		public int id { get; set; }
 		public DateTime datePoste { get; set; }
 		public string commentaire { get; set; }
-		public DateTime idDeleted { get; set; }
+		public bool idDeleted { get; set; }
 		public int idRessource { get; set; }
 		public int idUser { get; set; }
 	}
