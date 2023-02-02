@@ -16,34 +16,35 @@ namespace APIRessource.Controllers
             cnx = context;
         }
 
-        // POST api/<CommentaireController>
+        // POST api/<CommentaireController>CommentaireRessource
         [HttpPost]
-        public void Post([FromBody] string commentaire, int idUser)
+        public void Post()
         {
-            Commentaire c = new Commentaire();
-            c.datePoste = DateTime.Now;
-            c.commentaire = commentaire;
-            c.idDeleted = false;
+            COMMENTAIRE c = new COMMENTAIRE();
+            c.id = 1;
+            c.datePost = "de";
+            c.commentaire = "commentaire";
+            c.idDeleted = 0;
             c.idRessource = 1;
-            c.idUser = idUser;
+            c.idUser = 1;
 
             cnx.Add(c);
-            cnx.SaveChanges();
+            cnx.SaveChanges(true);
         }
 
         // GET api/<CommentaireController>/5
         [HttpGet("{id}")]
-        public Commentaire Get(int id)
+        public COMMENTAIRE Get(int id)
         {
-            return cnx.Commentaire.Where(c => c.id == id).First();
+            return cnx.COMMENTAIRE.Where(c => c.id == id).First();
         }
 
         // DELETE api/<CommentaireController>/5
         [HttpDelete("{id}")]
         public void Delete(int id, int idUser)
         {
-            Commentaire c = cnx.Commentaire.Where(c => c.id == id).First();
-            c.idDeleted = true;
+            COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.id == id).First();
+            c.idDeleted = 1;
             c.idUser = idUser;
             cnx.Update(c);
             cnx.SaveChanges();
@@ -53,10 +54,12 @@ namespace APIRessource.Controllers
         [HttpPut("{id}")]
         public void Put(int id, int idUser)
         {
-            Commentaire c = cnx.Commentaire.Where(c => c.id == id).First();
+            COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.id == id).First();
             c.idUser = idUser;
             cnx.Update(c);
             cnx.SaveChanges(true);
         }
     }
+
+    ///////////////////////////////rajouter moderer un mommentaire/////////////////////////////////////////////////////////////////////////
 }
