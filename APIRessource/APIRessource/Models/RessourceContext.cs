@@ -64,44 +64,41 @@ namespace APIRessource.Models
                     .HasForeignKey(d => d.idZoneGeo)
                     .HasConstraintName("FK_USER_ZONE_GEO");
 
+                entity.HasMany<RESSOURCE>(d => d.RESSOURCE)
+                .WithOne(p => p.USER)
+                .HasForeignKey(d => d.idRessource);
+
             });
 
-            /*modelBuilder.Entity<ROLE>(entity =>
+
+            modelBuilder.Entity<RESSOURCE>(entity =>
+            {
+                entity.HasKey(e => e.idRessource);
+
+                entity.HasOne(d => d.USER)
+                .WithMany(p => p.RESSOURCE)
+                .HasForeignKey(d => d.idUser);
+            });
+
+          /*  modelBuilder.Entity<ROLE>(entity =>
             {
                 entity.HasKey(e => e.idRole);
 
-                entity.Property(e => e.nomRole)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.HasMany(d => d.USER)
+                .WithOne(p => p.ROLE)
+                .HasForeignKey(d => d.idUser);
 
-                
             });
 
             modelBuilder.Entity<ZONE_GEO>(entity =>
             {
                 entity.HasKey(e => e.idZoneGeo);
 
-                entity.Property(e => e.code)
-                    .IsRequired();
+                entity.HasMany(d => d.USER)
+                .WithOne(p => p.ZONE_GEO)
+                .HasForeignKey(d => d.idUser);
 
-                entity.Property(e => e.nom_fr_fr)
-                .HasMaxLength(45)
-                .IsUnicode(false);
-
-                
             });*/
-
-
-            /*modelBuilder.Entity<ROLE>()
-                .HasMany<USER>(r => r.USER)
-                .WithOne(u => u.ROLE)
-                .HasForeignKey(u => u.idRole);
-
-            modelBuilder.Entity<ZONE_GEO>()
-                .HasMany<USER>(r => r.USER)
-                .WithOne(u => u.ZONE_GEO)
-                .HasForeignKey(u => u.idZoneGeo);*/
-
 
         }
 

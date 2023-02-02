@@ -36,29 +36,24 @@ namespace APIRessource.Controllers
 
         }
 
+        // GET api/<UserController>/5/ressource
+        [HttpGet("{id}/ressource")]
+        public USER GetWithRessource(int id)
+        {
+            return cnx.USER.Include(u=>u.RESSOURCE).Where(u=>u.idUser == id).First();
+        }
+
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public USER Get(int id)
         {
-            return cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).Where(u => u.idUser == id).FirstOrDefault();
+            return cnx.USER.Include(u => u.ZONE_GEO).Include(u => u.ROLE).Include(u=>u.RESSOURCE).Where(u => u.idUser == id).FirstOrDefault();
         }
 
         // POST api/<UserController>
         [HttpPost]
         public void Post([FromBody] USER user)
 {
-            //USER user = JsonSerializer.Deserialize<USER>(value);
-            //USER user = new USER();
-            /*user.nom = "moreau";
-            user.prenom = "kevin";
-            user.email = "kevin2@viacesi.fr";
-            user.password = "fezf";
-            user.pseudo = "jesuisaurattrapage";
-            user.telephone = "0638568545";
-            user.isDeleted = false;
-            user.isConfirm = false;
-            user.zone_geo = new ZONE_GEO();
-            user.role = new ROLE();*/
             user.dateCreation = DateTime.Now;
             user.isConfirm = false;
             user.isDeleted = false;

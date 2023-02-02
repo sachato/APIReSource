@@ -25,6 +25,7 @@ namespace APIRessource.Models
         public int idRole { get; set; }
         public  ZONE_GEO? ZONE_GEO { get; set; }
         public  ROLE? ROLE { get; set; }
+        public List<RESSOURCE>? RESSOURCE { get; set; }
 
     }
 }

@@ -6,6 +6,6 @@
     "\\APIRessource\\APIRessource\\Controllers",
     "\\APIRessource\\APIRessource\\Models"
   ],
-  "SelectedNode": "\\APIRessource\\APIRessource\\Models\\RessourceContext.cs",
+  "SelectedNode": "\\APIRessource\\APIRessource\\Controllers\\UserController.cs",
   "PreviewInSolutionExplorer": false
 }
