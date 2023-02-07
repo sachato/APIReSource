@@ -18,48 +18,87 @@ namespace APIRessource.Controllers
 
         // POST api/<CommentaireController>CommentaireRessource
         [HttpPost]
-        public void Post()
+        public void Post(string commentaire, int idRessource, int idUser)
         {
             COMMENTAIRE c = new COMMENTAIRE();
-            c.id = 1;
-            c.datePost = "de";
-            c.commentaire = "commentaire";
-            c.idDeleted = 0;
-            c.idRessource = 1;
-            c.idUser = 1;
+            var lastId = cnx.COMMENTAIRE.OrderByDescending(x => x.idCommentaire).Select(x => x.idCommentaire).FirstOrDefault();
+            var userExist = cnx.USER.Any(r => r.id == idUser);
 
-            cnx.Add(c);
-            cnx.SaveChanges(true);
+            if (idUser >= 0 && userExist)
+            {
+                
+                c.commentaire = commentaire;
+                c.idDeleted = 0;
+                c.idRessource = idRessource;
+                c.idUser = idUser;
+                c.datePost = DateTime.Now; 
+
+                cnx.Add(c);
+                cnx.SaveChanges(true);
+            }
         }
 
         // GET api/<CommentaireController>/5
-        [HttpGet("{id}")]
-        public COMMENTAIRE Get(int id)
+        [HttpGet("GetCommentaires/{idCommentaire}")]
+        public COMMENTAIRE Get(int idCommentaire)
         {
-            return cnx.COMMENTAIRE.Where(c => c.id == id).First();
+            return cnx.COMMENTAIRE.Where(c => c.idCommentaire == idCommentaire).First();
+        }
+
+        // GETALL BY RESSOURCE
+        [HttpGet("GetALLCommentairesByRessource/{idRessource}")]
+        public IEnumerable<COMMENTAIRE> GetAllCommentairesByRessourceId(int idRessource)
+        {
+            return cnx.COMMENTAIRE.Where(c => c.idRessource == idRessource && c.idDeleted == 0).ToList();
         }
 
         // DELETE api/<CommentaireController>/5
         [HttpDelete("{id}")]
         public void Delete(int id, int idUser)
         {
-            COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.id == id).First();
-            c.idDeleted = 1;
-            c.idUser = idUser;
-            cnx.Update(c);
-            cnx.SaveChanges();
+            var isModerator = cnx.USER.Any(r => r.id == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
+            var isOwner = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idUser == idUser).Any();
+            var isDeleted = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idDeleted == 1).Any();
+            var userRole = cnx.USER.Where(r => r.id == idUser).FirstOrDefault();
+            COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id).First();
+
+         
+                if ((isModerator || isOwner) && !isDeleted)
+                {
+                    c.idDeleted = 1;
+                    c.idUser = idUser;
+                    cnx.Update(c);
+                    cnx.SaveChanges();
+                }
+                else if (isDeleted)
+                    Console.WriteLine("Le commentaire a été supprimé");
+                else if (!isOwner)
+                    Console.WriteLine("Vous n'etes pas le propriétaire de ce commentaire");
+                else if (!isModerator)
+                    Console.WriteLine("Vous n'etes pas le moérateur");
         }
 
         // PUT api/<CommentaireController>/5
         [HttpPut("{id}")]
-        public void Put(int id, int idUser)
+        public void Put(int id, int idUser, [FromBody] COMMENTAIRE commentaire)
         {
-            COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.id == id).First();
-            c.idUser = idUser;
-            cnx.Update(c);
-            cnx.SaveChanges(true);
+            var isModerator = cnx.USER.Where(r => r.id == idUser && r.idRole == 8).Any();
+            var isOwner = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idUser == idUser).Any();
+            var isDeleted = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idDeleted == 1).Any();
+            
+
+            if ((isModerator || isOwner) && !isDeleted)
+            {
+                COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id).First();
+                c.commentaire = commentaire.commentaire;
+                c.datePost = DateTime.Now;
+                cnx.Update(c);
+                cnx.SaveChanges();
+            }
         }
+
+        
+
     }
 
-    ///////////////////////////////rajouter moderer un mommentaire/////////////////////////////////////////////////////////////////////////
 }
