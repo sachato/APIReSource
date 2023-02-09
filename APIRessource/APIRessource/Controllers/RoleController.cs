@@ -33,7 +33,7 @@ namespace APIRessource.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id, int idUser)
         {
-            var isModerator = cnx.USER.Any(r => r.id == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
+            var isModerator = cnx.USER.Any(r => r.idUser == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
             var isOwner = cnx.CONSULTATION.Where(c => c.idConsultation == id && c.idUser == idUser).Any();
             CONSULTATION c = cnx.CONSULTATION.Where(c => c.idConsultation == id).First();
 

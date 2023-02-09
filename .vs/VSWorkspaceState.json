@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\APIRessource",
-    "\\APIRessource\\APIRessource",
-    "\\APIRessource\\APIRessource\\Controllers",
-    "\\APIRessource\\APIRessource\\Models"
+    "\\APIRessource\\APIRessource"
   ],
+  "SelectedNode": "\\APIRessource\\APIRessource.sln",
   "PreviewInSolutionExplorer": false
 }

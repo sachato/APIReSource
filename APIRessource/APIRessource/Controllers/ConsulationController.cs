@@ -48,7 +48,7 @@ namespace APIRessource.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id, int idUser, int idRole)
         {
-            var isModerator = cnx.USER.Any(r => r.id == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
+            var isModerator = cnx.USER.Any(r => r.idUser == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
             CONSULTATION c = cnx.CONSULTATION.Where(c => c.idConsultation == id).First();
             if (isModerator)
             {
@@ -63,7 +63,7 @@ namespace APIRessource.Controllers
         [HttpPut("{id}")]
         public void Put(string nomRole, int idUser, int idRole)
         {
-            var isModerator = cnx.USER.Where(r => r.id == idUser && r.idRole == 8).Any();
+            var isModerator = cnx.USER.Where(r => r.idUser == idUser && r.idRole == 8).Any();
 
             if (isModerator)
             {

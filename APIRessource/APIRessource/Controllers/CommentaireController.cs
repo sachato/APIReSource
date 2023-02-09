@@ -22,7 +22,7 @@ namespace APIRessource.Controllers
         {
             COMMENTAIRE c = new COMMENTAIRE();
             var lastId = cnx.COMMENTAIRE.OrderByDescending(x => x.idCommentaire).Select(x => x.idCommentaire).FirstOrDefault();
-            var userExist = cnx.USER.Any(r => r.id == idUser);
+            var userExist = cnx.USER.Any(r => r.idUser == idUser);
 
             if (idUser >= 0 && userExist)
             {
@@ -31,7 +31,7 @@ namespace APIRessource.Controllers
                 c.idDeleted = 0;
                 c.idRessource = idRessource;
                 c.idUser = idUser;
-                c.datePost = DateTime.Now; 
+                c.datePost = DateTime.Now; //verifier si IdRessource existe, return un objet
 
                 cnx.Add(c);
                 cnx.SaveChanges(true);
@@ -56,10 +56,10 @@ namespace APIRessource.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id, int idUser)
         {
-            var isModerator = cnx.USER.Any(r => r.id == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
+            var isModerator = cnx.USER.Any(r => r.idUser == idUser && (r.idRole == 8 || r.idRole == 6 || r.idRole == 7 || r.idRole == 5));
             var isOwner = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idUser == idUser).Any();
             var isDeleted = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idDeleted == 1).Any();
-            var userRole = cnx.USER.Where(r => r.id == idUser).FirstOrDefault();
+            var userRole = cnx.USER.Where(r => r.idUser == idUser).FirstOrDefault();
             COMMENTAIRE c = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id).First();
 
          
@@ -82,7 +82,7 @@ namespace APIRessource.Controllers
         [HttpPut("{id}")]
         public void Put(int id, int idUser, [FromBody] COMMENTAIRE commentaire)
         {
-            var isModerator = cnx.USER.Where(r => r.id == idUser && r.idRole == 8).Any();
+            var isModerator = cnx.USER.Where(r => r.idUser == idUser && r.idRole == 8).Any();
             var isOwner = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idUser == idUser).Any();
             var isDeleted = cnx.COMMENTAIRE.Where(c => c.idCommentaire == id && c.idDeleted == 1).Any();
             

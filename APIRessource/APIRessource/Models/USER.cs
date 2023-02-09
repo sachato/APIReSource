@@ -1,8 +1,13 @@
-﻿namespace APIRessource.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace APIRessource.Models
 {
     public class USER
     {
-        public int id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int idUser { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
         public string email { get; set; }

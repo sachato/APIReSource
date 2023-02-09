@@ -28,7 +28,7 @@ namespace APIRessource.Controllers
         [HttpGet("{id}")]
         public USER Get(int id)
         {
-            return cnx.USER.Where(u => u.id == id).First();
+            return cnx.USER.Where(u => u.idUser == id).First();
         }
 
         // POST api/<UserController>
@@ -55,7 +55,7 @@ namespace APIRessource.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
-            USER user = cnx.USER.Where(u => u.id == id).First();
+            USER user = cnx.USER.Where(u => u.idUser == id).First();
             user.isConfirm = true;
 
             cnx.Update(user);
@@ -66,7 +66,7 @@ namespace APIRessource.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            USER user = cnx.USER.Where(u => u.id == id).First();
+            USER user = cnx.USER.Where(u => u.idUser == id).First();
             user.isDeleted = true;
             cnx.Update(user);
             cnx.SaveChanges();
